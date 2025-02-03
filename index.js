@@ -97,7 +97,6 @@ const aboutObserver = new IntersectionObserver(
 aboutObserver.observe(aboutSection);
 
 // --- Netlify Contact Form Handler ---
-// Select the contact form (ensure you're selecting the correct one)
 const contactForm = document.querySelector('form[name="contact"]');
 
 contactForm.addEventListener('submit', async (e) => {
@@ -110,7 +109,6 @@ contactForm.addEventListener('submit', async (e) => {
 
   try {
     const formData = new FormData(form);
-    // Ensure the hidden form-name field is appended
     formData.append('form-name', 'contact');
 
     const response = await fetch('/', {
@@ -129,6 +127,5 @@ contactForm.addEventListener('submit', async (e) => {
     alert('Network error. Please check your connection.');
   }
 
-  // Reset button text
   submitButton.innerHTML = 'Send Message';
 });
