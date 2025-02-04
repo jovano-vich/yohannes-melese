@@ -22,7 +22,7 @@ function moveSlide(direction) {
 // Initialize first testimonial slide
 showSlide(currentSlide);
 
-// Luxury Scroll Animations
+// Luxury Scroll Animations for sections
 const sections = document.querySelectorAll('section');
 
 const sectionObserver = new IntersectionObserver(
@@ -96,36 +96,14 @@ const aboutObserver = new IntersectionObserver(
 
 aboutObserver.observe(aboutSection);
 
-// --- Netlify Contact Form Handler ---
-const contactForm = document.querySelector('form[name="contact"]');
-
-contactForm.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const form = e.target;
-  const submitButton = form.querySelector('button[type="submit"]');
-
-  // Show loading state
-  submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-
-  try {
-    const formData = new FormData(form);
-    formData.append('form-name', 'contact');
-
-    const response = await fetch('/', {
-      method: 'POST',
-      body: formData,
-      headers: { 'Accept': 'application/json' }
-    });
-
-    if (response.ok) {
-      form.reset();
-      alert("Message sent successfully! I'll respond within 24 hours.");
-    } else {
-      alert('Oops! Something went wrong. Please try again.');
-    }
-  } catch (error) {
-    alert('Network error. Please check your connection.');
-  }
-
-  submitButton.innerHTML = 'Send Message';
-});
+/*
+  Web3Forms submission:
+  With Web3Forms, you don’t need a custom JavaScript handler.
+  The form submits directly to the Web3Forms endpoint specified in the HTML.
+  
+  Therefore, the previous Netlify handler has been removed.
+  
+  If you want to add custom behavior after submission (such as resetting the form
+  or displaying a custom success message), you can attach an event listener to the form
+  and handle it accordingly. For now, the form submission is handled natively.
+*/
